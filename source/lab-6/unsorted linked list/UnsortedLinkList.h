@@ -1,10 +1,10 @@
-#ifndef LINKLIST_H
-#define LINKLIST_H
+#ifndef UnsortedLinkList_H
+#define UnsortedLinkList_H
 
 #pragma once
 
 template <class ItemType>
-class LinkList
+class UnsortedLinkList
 {
     struct Node
     {
@@ -14,8 +14,8 @@ class LinkList
     
 
     public:
-        LinkList();
-        ~LinkList();
+        UnsortedLinkList();
+        ~UnsortedLinkList();
         bool IsFull();
         int LengthIs();
         void MakeEmpty();
