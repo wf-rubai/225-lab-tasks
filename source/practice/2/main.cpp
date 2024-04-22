@@ -1,48 +1,77 @@
 #include <iostream>
-#include <math.h>
-#include <vector>
-// #include <bits/stdc++.h> 
-
+#include "unsortedtype.h"
+#include "unsortedtype.cpp"
 using namespace std;
 
-int N = 2778533;
-int root = sqrt(N);
-vector<bool> isPrime(root, true);
-
 int main() {
-    time_t start, end; 
-    time(&start); 
-    
-    int count = 1, flag = 1;
-    for(int i=3; i<=sqrt(root); i+=2){
-        if(isPrime[i]){
-            for(int j = i+i; j<=root; j+=i){
-                isPrime[j] = false;
 
-            }
+    UnsortedType<int> list1, list2, merged;
+
+    int n, v;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> v;
+        list1.InsertItem(v);
+    }
+
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> v;
+        list2.InsertItem(v);
+    }
+
+    int value1, value2;
+    int index1 = list1.LengthIs();
+    int index2 = list2.LengthIs();
+    list1.GetNextItem(value1);
+    list2.GetNextItem(value2);
+
+    while (index1 > 0 && index2 > 0) {
+        if (value1 > value2) {
+            merged.InsertItem(value1);
+            index1--;
+            if (index1 > 0)
+                list1.GetNextItem(value1);
+        } else if (value2 > value1) {
+            merged.InsertItem(value2);
+            index2--;
+            if (index2 > 0)
+                list2.GetNextItem(value2);
+        } else {
+            merged.InsertItem(value1);
+            merged.InsertItem(value2);
+            index1--;
+            index2--;
+            if (index1 > 0)
+                list1.GetNextItem(value1);
+            if (index2 > 0)
+                list2.GetNextItem(value2);
         }
     }
 
-    if(N%2 !=0){
-        for(int i=3; i<=root; i+=2){
-            if(isPrime[i] && N%i ==0){
-                flag = 0;
-                cout << "Not a prime" << endl;
-                break;
-            }
-        }
-    }else{
-        flag = 0;
-        cout << "Not a prime" << endl;
+    while (index1 > 0) {
+        merged.InsertItem(value1);
+        index1--;
+        if (index1 > 0)
+            list1.GetNextItem(value1);
     }
 
-    if(flag == 1)
-        cout << "Prime" << endl;
+    while (index2 > 0) {
+        merged.InsertItem(value2);
+        index2--;
+        if (index2 > 0)
+            list2.GetNextItem(value2);
+    }
 
-     
-    time(&end);  
-    double time_taken = double(end - start) / double(CLOCKS_PER_SEC); 
-    cout << "Time taken by program is : " << time_taken << " sec " << endl; 
+    int value_merged;
+    int index_merged = merged.LengthIs() - 1;
+
+    while (index_merged >= 0) {
+        merged.GetNextItem(value_merged);
+        cout << value_merged << ' ';
+        index_merged--;
+    }
+    cout << endl;
 
     return 0;
 }
