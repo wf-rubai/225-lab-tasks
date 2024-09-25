@@ -12,6 +12,7 @@ public:
     complex operator+(complex a);
     complex operator-(complex a);
     complex operator*(complex a);
+    bool operator!=(complex a);
     void print();
 
 private:

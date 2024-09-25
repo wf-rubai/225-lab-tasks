@@ -46,6 +46,14 @@ complex complex::operator*(complex a)
     return t;
 }
 
+bool complex::operator!=(complex a)
+{
+    if(real == a.real && imaginary == a.imaginary)
+        return false;
+    else
+        return true;
+}
+
 void complex::print()
 {
     if(imaginary<0)

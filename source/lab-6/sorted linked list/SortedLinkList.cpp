@@ -7,9 +7,7 @@ using namespace std;
 template <class ItemType>
 SortedLinkList<ItemType>::SortedLinkList()
 {
-    head = NULL;
-    length = 0;
-    currentPos = NULL;
+    
 }
 
 template <class ItemType>

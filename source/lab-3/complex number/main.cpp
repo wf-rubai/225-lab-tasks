@@ -19,5 +19,11 @@ int main() {
     c3 = c1*c2;
     c3.print();
 
+    if(c1 != c2){
+        cout << "they are not equal" << endl;
+    }else{
+        cout << "they are equal" << endl;
+    }
+
     return 0;
 }
